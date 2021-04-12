@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  compile:
+   docker:
+      - image: fadlyas/kernel_dockerfile:latest
+   steps:
+      - run:
+          command: |
+           apt update && apt install -y default-jre nano flex
+           git config --global user.name "Saiful-220"
+           git config --global user.email "saiful.gamerx2@gmail.com"
+           git clone https://github.com/KudProject/kernel_msm-4.9 -b a11/master
+           chmod +x ~/kernel/build.sh
+workflows:
+  version: 2.1
+  cooking:
+    jobs:
+      - compile
